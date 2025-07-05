@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hue Swap - 色層スライドパズル</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <header>
+            <h1>Hue Swap</h1>
+            <div class="ui-bar">
+                <div class="level-info">Level <span id="level-number">1</span></div>
+                <div class="score-info">Score: <span id="score">0</span></div>
+                <button id="reset-button">Reset</button>
+            </div>
+        </header>
+        
+        <main>
+            <div class="target-color-section">
+                <h2>目標色</h2>
+                <div class="target-color-display" id="target-color"></div>
+                <div class="target-rgb" id="target-rgb">RGB(255, 255, 255)</div>
+            </div>
+            
+            <div class="current-color-section">
+                <h2>現在の色</h2>
+                <div class="current-color-display" id="current-color"></div>
+                <div class="current-rgb" id="current-rgb">RGB(0, 0, 0)</div>
+            </div>
+            
+            <div class="game-board">
+                <canvas id="game-canvas" width="320" height="480"></canvas>
+                <div class="layer-indicator">
+                    <div class="layer-tab active" data-layer="foreground">前景</div>
+                    <div class="layer-tab" data-layer="background">背景</div>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <div class="piece-palette">
+                    <div class="palette-piece" data-color="red" style="background-color: #ff0000;"></div>
+                    <div class="palette-piece" data-color="green" style="background-color: #00ff00;"></div>
+                    <div class="palette-piece" data-color="blue" style="background-color: #0000ff;"></div>
+                    <div class="palette-piece" data-color="yellow" style="background-color: #ffff00;"></div>
+                    <div class="palette-piece" data-color="magenta" style="background-color: #ff00ff;"></div>
+                    <div class="palette-piece" data-color="cyan" style="background-color: #00ffff;"></div>
+                </div>
+                
+                <button id="swap-layers-button">レイヤー切り替え</button>
+                <button id="clear-layer-button">レイヤークリア</button>
+            </div>
+            
+            <div class="instructions">
+                <p>色のピースを前景・背景に配置して、目標色を作り出そう！</p>
+                <p>タップで配置、レイヤーを切り替えて色を混合させよう。</p>
+            </div>
+        </main>
+        
+        <div id="success-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2>クリア！</h2>
+                <p>素晴らしい！目標色を作り出しました。</p>
+                <button id="next-level-button">Next Level</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>

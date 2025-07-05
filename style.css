@@ -1,0 +1,302 @@
+/* リセットとベース設定 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #333;
+    min-height: 100vh;
+    padding: 10px;
+}
+
+.game-container {
+    max-width: 400px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+/* ヘッダー */
+header {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.ui-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+
+#reset-button {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid white;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#reset-button:hover {
+    background: white;
+    color: #ff6b6b;
+}
+
+/* メインコンテンツ */
+main {
+    padding: 20px;
+}
+
+/* 色表示セクション */
+.target-color-section, .current-color-section {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.target-color-section h2, .current-color-section h2 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.target-color-display, .current-color-display {
+    width: 100%;
+    height: 50px;
+    border: 3px solid #333;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    transition: all 0.3s ease;
+}
+
+.target-rgb, .current-rgb {
+    font-size: 14px;
+    color: #666;
+    font-weight: bold;
+}
+
+/* ゲームボード */
+.game-board {
+    position: relative;
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+#game-canvas {
+    display: block;
+    margin: 0 auto;
+    border: 2px solid #333;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    touch-action: none;
+}
+
+.layer-indicator {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.layer-tab {
+    background: #e9ecef;
+    border: 2px solid #dee2e6;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.layer-tab:first-child {
+    border-radius: 20px 0 0 20px;
+}
+
+.layer-tab:last-child {
+    border-radius: 0 20px 20px 0;
+}
+
+.layer-tab.active {
+    background: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.layer-tab:hover:not(.active) {
+    background: #f8f9fa;
+}
+
+/* コントロール */
+.controls {
+    margin-bottom: 20px;
+}
+
+.piece-palette {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.palette-piece {
+    aspect-ratio: 1;
+    border: 3px solid #333;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.palette-piece:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.palette-piece.selected {
+    border-color: #fff;
+    box-shadow: 0 0 0 3px #007bff;
+}
+
+#swap-layers-button, #clear-layer-button {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-right: 10px;
+}
+
+#swap-layers-button:hover, #clear-layer-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#clear-layer-button {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+}
+
+/* 説明文 */
+.instructions {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #666;
+}
+
+/* モーダル */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 300px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h2 {
+    color: #28a745;
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+.modal-content p {
+    margin-bottom: 20px;
+    color: #666;
+    line-height: 1.5;
+}
+
+#next-level-button {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#next-level-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 480px) {
+    .game-container {
+        margin: 0;
+        border-radius: 0;
+        min-height: 100vh;
+    }
+    
+    main {
+        padding: 15px;
+    }
+    
+    #game-canvas {
+        width: 100%;
+        height: auto;
+    }
+    
+    .piece-palette {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .ui-bar {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* タッチデバイス対応 */
+@media (hover: none) {
+    .palette-piece:hover {
+        transform: none;
+    }
+    
+    .palette-piece:active {
+        transform: scale(0.95);
+    }
+}
