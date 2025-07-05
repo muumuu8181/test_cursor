@@ -1,0 +1,24 @@
+[Unit]
+Description=Twitter Auto Poster
+After=network.target
+
+[Service]
+Type=simple
+User=your_username
+WorkingDirectory=/path/to/your/twitter-auto-poster
+ExecStart=/usr/bin/python3 main.py --start
+Restart=always
+RestartSec=10
+
+# Environment variables (optional, if not using .env file)
+# Environment=TWITTER_API_KEY=your_api_key_here
+# Environment=TWITTER_API_SECRET=your_api_secret_here
+# Environment=TWITTER_ACCESS_TOKEN=your_access_token_here
+# Environment=TWITTER_ACCESS_TOKEN_SECRET=your_access_token_secret_here
+
+# Standard output and error logging
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
