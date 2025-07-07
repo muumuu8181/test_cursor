@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4択問題アプリ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>4択問題アプリ</h1>
+            <div class="nav-buttons">
+                <button id="homeBtn" class="nav-btn active">ホーム</button>
+                <button id="recordsBtn" class="nav-btn">記録</button>
+                <button id="settingsBtn" class="nav-btn">設定</button>
+            </div>
+        </header>
+
+        <main>
+            <!-- ホーム画面 -->
+            <div id="homeScreen" class="screen active">
+                <div class="welcome-section">
+                    <h2>問題を解いてみよう！</h2>
+                    <p>5問1セットで挑戦できます</p>
+                    <button id="startQuizBtn" class="primary-btn">問題を始める</button>
+                </div>
+                
+                <div class="stats-section">
+                    <div class="stat-card">
+                        <h3>総問題数</h3>
+                        <span id="totalQuestions">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>正答率</h3>
+                        <span id="accuracyRate">0%</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>セッション数</h3>
+                        <span id="totalSessions">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 問題画面 -->
+            <div id="quizScreen" class="screen">
+                <div class="quiz-header">
+                    <div class="progress-bar">
+                        <div id="progressFill" class="progress-fill"></div>
+                    </div>
+                    <span id="questionCounter">1/5</span>
+                </div>
+                
+                <div class="question-container">
+                    <h2 id="questionText">問題文がここに表示されます</h2>
+                    <div class="choices-container">
+                        <button class="choice-btn" data-choice="0">
+                            <span class="choice-label">A</span>
+                            <span class="choice-text">選択肢1</span>
+                        </button>
+                        <button class="choice-btn" data-choice="1">
+                            <span class="choice-label">B</span>
+                            <span class="choice-text">選択肢2</span>
+                        </button>
+                        <button class="choice-btn" data-choice="2">
+                            <span class="choice-label">C</span>
+                            <span class="choice-text">選択肢3</span>
+                        </button>
+                        <button class="choice-btn" data-choice="3">
+                            <span class="choice-label">D</span>
+                            <span class="choice-text">選択肢4</span>
+                        </button>
+                    </div>
+                    <button id="nextBtn" class="primary-btn" style="display: none;">次の問題</button>
+                </div>
+            </div>
+
+            <!-- 結果画面 -->
+            <div id="resultScreen" class="screen">
+                <div class="result-container">
+                    <h2>結果発表</h2>
+                    <div class="result-score">
+                        <span id="scoreText">5問中3問正解</span>
+                        <span id="scorePercentage">60%</span>
+                    </div>
+                    <div class="result-details">
+                        <div id="resultDetails"></div>
+                    </div>
+                    <div class="result-actions">
+                        <button id="retryBtn" class="primary-btn">もう一度挑戦</button>
+                        <button id="backHomeBtn" class="secondary-btn">ホームに戻る</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 記録画面 -->
+            <div id="recordsScreen" class="screen">
+                <h2>過去の記録</h2>
+                <div class="records-container">
+                    <div id="recordsList"></div>
+                    <button id="clearRecordsBtn" class="danger-btn">記録をクリア</button>
+                </div>
+            </div>
+
+            <!-- 設定画面 -->
+            <div id="settingsScreen" class="screen">
+                <h2>設定</h2>
+                <div class="settings-container">
+                    <div class="setting-item">
+                        <h3>問題ファイルの読み込み</h3>
+                        <input type="file" id="fileInput" accept=".txt" />
+                        <p class="help-text">テキストファイル(.txt)を選択してください</p>
+                    </div>
+                    <div class="setting-item">
+                        <h3>問題ファイルの形式</h3>
+                        <div class="format-example">
+                            <p>以下の形式でテキストファイルを作成してください：</p>
+                            <pre>問題文
+選択肢1
+選択肢2
+選択肢3
+選択肢4
+正解番号(1-4)
+
+問題文2
+選択肢1
+選択肢2
+選択肢3
+選択肢4
+正解番号(1-4)</pre>
+                        </div>
+                    </div>
+                    <div class="setting-item">
+                        <button id="downloadSampleBtn" class="secondary-btn">サンプルファイルをダウンロード</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
